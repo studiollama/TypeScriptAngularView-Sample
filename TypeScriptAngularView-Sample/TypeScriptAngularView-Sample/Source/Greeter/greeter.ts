@@ -8,14 +8,13 @@ class Greeter {
     constructor($scope: ng.IScope) {
         this.$scope = $scope;
         this.time = new Date().toUTCString();
-        this.start();
+
+        this.timerToken = setInterval(this.timer.bind(this), 500);
     }
 
-    start() {
-        this.timerToken = setInterval(() => { 
-            this.time = new Date().toUTCString(), 500
-            this.$scope.$apply();
-        });
+    timer() {
+        this.time = new Date().toUTCString();
+        this.$scope.$apply();
     }
 
     stop() {
