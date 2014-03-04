@@ -3,11 +3,22 @@ import Greeter = require("Source/Greeter/greeter");
 
 //If you export like this, you have to say new main.Main unlike the greeter where we say new Greeter()
 export class Main {
-    greeter: Greeter;
+    main: ng.IModule;
+    /**
+    *   Start web app and initialize nave buttons.
+    */
+    constructor($window, $route: ng.route.IRouteService) {
 
-    constructor() {
-        //When you look at how the greeter class is exported you see why we can just say new Greeter()
-        this.greeter = new Greeter();
-        this.greeter.start();
+        this.main = angular.module('main', ['ngRoute'],
+            function ($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) {
+                $routeProvider.when('/', {
+                    templateUrl: '/Source/Greeter/greeter.html',
+                    controller: Greeter,
+                    controllerAs: 'greeter'
+                });
+                
+                $locationProvider.html5Mode(true);
+            }); 
+        angular.bootstrap(document, ['main'])    
     }
 }
