@@ -1,4 +1,4 @@
 TypeScriptAngularView-Sample
 ============================
 
-TypeScript and AngularJS view sample, also includes RequireJS
+TypeScript and AngularJS view sample, also includes RequireJS.
